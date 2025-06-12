@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  slackoff:
+    build: .
+    container_name: slackoff-app
+    ports:
+      - "80:80"
+      - "443:443"  # For future HTTPS setup
+    restart: unless-stopped
+    volumes:
+      # Mount logs for monitoring
+      - ./logs:/usr/local/apache2/logs
+      # Optional: Mount custom Apache config for easy updates
+      - ./docker/apache.conf:/usr/local/apache2/conf/httpd.conf:ro
+    environment:
+      - APACHE_RUN_USER=daemon
+      - APACHE_RUN_GROUP=daemon
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "com.docker.compose.project=slackoff"
+      - "description=SlackOff - The World's Worst Team Communication SaaS"
+
+  # Optional: Add a reverse proxy for production
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: slackoff-proxy
+    ports:
+      - "8080:80"
+    volumes:
+      - ./docker/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - slackoff
+    restart: unless-stopped
+    profiles:
+      - "proxy"  # Only start with --profile proxy
+
+volumes:
+  apache_logs:
+    driver: local
+
+networks:
+  default:
+    name: slackoff-network

@@ -1,0 +1,144 @@
+/* SlackOff Global Chaos Styles */
+
+:root {
+  font-family: 'Comic Sans MS', cursive, system-ui;
+  line-height: 1.5;
+  font-weight: 400;
+  
+  /* Terrible color scheme */
+  color-scheme: chaos;
+  color: #ff00ff;
+  background-color: #00ffff;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><text x="0" y="15" font-size="15">💩</text></svg>'), auto !important;
+}
+
+a {
+  font-weight: 500;
+  color: #ff0000;
+  text-decoration: underline overline line-through;
+  animation: blink 2s infinite;
+}
+
+a:hover {
+  color: #00ff00;
+  transform: rotate(360deg);
+  transition: all 2s;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff0000);
+  background-size: 400% 400%;
+  animation: rainbow-bg 3s ease infinite;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Papyrus', fantasy;
+  color: #ff0000;
+  text-shadow: 3px 3px 0 #00ff00, 6px 6px 0 #0000ff;
+  animation: wiggle 1s infinite;
+}
+
+button {
+  border-radius: 20px;
+  border: 3px solid #ff00ff;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Impact', sans-serif;
+  background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #ffff00, #ff00ff, #00ffff);
+  transform: scale(1.2) rotate(10deg);
+  box-shadow: 0 0 30px #ff00ff;
+  animation: wiggle 0.5s infinite;
+}
+
+button:focus {
+  outline: 5px solid #ffff00;
+  outline-offset: 5px;
+}
+
+button:active {
+  transform: scale(0.8) rotate(-10deg);
+}
+
+input, textarea {
+  border: 3px solid #ff00ff;
+  border-radius: 15px;
+  padding: 10px;
+  font-family: 'Wingdings', monospace;
+  background: linear-gradient(90deg, #fff, #f0f0f0);
+  font-size: 14px;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #00ff00;
+  box-shadow: 0 0 20px #ff00ff;
+  animation: wiggle 0.5s infinite;
+}
+
+/* Terrible animations */
+@keyframes rainbow-bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(1deg); }
+  75% { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes spinning {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Terrible scrollbar */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, #ff00ff, #00ffff);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #ff0000, #00ff00);
+  border-radius: 10px;
+}
+
+/* Make everything terrible on mobile */
+@media (max-width: 768px) {
+  * {
+    font-size: 120% !important;
+    animation: blink 1s infinite !important;
+  }
+}

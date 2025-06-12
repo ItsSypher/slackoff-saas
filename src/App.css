@@ -1,0 +1,393 @@
+/* SlackOff - The World's Worst Communication App CSS */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Comic Sans MS', cursive;
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff0000);
+  background-size: 400% 400%;
+  animation: rainbow-bg 3s ease infinite;
+  overflow-x: hidden;
+}
+
+@keyframes rainbow-bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(1deg); }
+  75% { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes spinning {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.slackoff-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.9);
+  border: 5px solid #ff00ff;
+  border-style: dashed;
+}
+
+/* Header */
+.slackoff-header {
+  background: linear-gradient(90deg, #ff0000, #00ff00, #0000ff);
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #ffff00;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 3px 3px 0 #000;
+  animation: blink 2s infinite;
+}
+
+.tagline {
+  font-size: 12px;
+  color: #ffff00;
+  text-decoration: underline;
+  animation: wiggle 1s infinite;
+}
+
+.header-right {
+  display: flex;
+  gap: 15px;
+}
+
+.header-icon {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.header-icon:hover {
+  transform: scale(1.5) rotate(180deg);
+  color: #ff00ff;
+}
+
+.spinning {
+  animation: spinning 2s linear infinite;
+}
+
+/* Main content */
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: linear-gradient(180deg, #800080, #008080);
+  color: white;
+  padding: 20px;
+  border-right: 5px dotted #ffff00;
+  overflow-y: auto;
+}
+
+.channels, .users {
+  margin-bottom: 30px;
+}
+
+.channels h3, .users h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-decoration: underline overline;
+  animation: blink 3s infinite;
+}
+
+.channel-list, .user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.channel, .user {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+
+.channel:hover, .user:hover {
+  background: #ff00ff;
+  transform: scale(1.1) rotate(5deg);
+  border-color: #ffff00;
+}
+
+.channel.active {
+  background: #00ff00;
+  color: #000;
+  font-weight: bold;
+  animation: wiggle 2s infinite;
+}
+
+/* Chat area */
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #fff, #f0f0f0);
+}
+
+.channel-header {
+  background: linear-gradient(90deg, #ff8000, #ff0080);
+  color: white;
+  padding: 15px 20px;
+  border-bottom: 3px solid #00ff00;
+}
+
+.channel-header h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.channel-header p {
+  font-size: 14px;
+  opacity: 0.9;
+  animation: blink 4s infinite;
+}
+
+/* Messages */
+.messages-container {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50" y="50" font-size="20" text-anchor="middle" fill="%23ff00ff" opacity="0.1">💩</text></svg>') repeat;
+}
+
+.message {
+  margin-bottom: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #ff00ff;
+  border-radius: 15px;
+  position: relative;
+  transform-origin: center;
+}
+
+.message:nth-child(odd) {
+  background: rgba(255, 255, 0, 0.3);
+  border-color: #00ff00;
+  transform: rotate(1deg);
+}
+
+.message:nth-child(even) {
+  background: rgba(0, 255, 255, 0.3);
+  border-color: #ff0000;
+  transform: rotate(-1deg);
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.username {
+  font-weight: bold;
+  color: #ff0000;
+  text-decoration: underline;
+  font-size: 16px;
+}
+
+.timestamp {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
+.emoji-reaction {
+  font-size: 20px;
+  animation: spinning 3s linear infinite;
+}
+
+.message-content {
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.original-text {
+  margin-top: 5px;
+  padding: 5px;
+  background: rgba(255, 0, 0, 0.2);
+  border-radius: 5px;
+  font-style: italic;
+}
+
+/* Message input */
+.message-input-container {
+  background: linear-gradient(90deg, #ff00ff, #00ffff);
+  padding: 20px;
+  border-top: 5px solid #ffff00;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+
+.message-input {
+  flex: 1;
+  padding: 15px;
+  border: 3px solid #ff0000;
+  border-radius: 25px;
+  font-size: 16px;
+  font-family: 'Papyrus', fantasy;
+  background: linear-gradient(45deg, #fff, #f0f0f0);
+  resize: none;
+  min-height: 60px;
+}
+
+.message-input:focus {
+  outline: none;
+  border-color: #00ff00;
+  box-shadow: 0 0 20px #ff00ff;
+  animation: wiggle 0.5s infinite;
+}
+
+.send-button {
+  padding: 15px 25px;
+  background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);
+  color: white;
+  border: 3px solid #ffff00;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  animation: blink 2s infinite;
+}
+
+.send-button:hover {
+  animation: wiggle 0.3s infinite, blink 1s infinite;
+  box-shadow: 0 0 30px #ff00ff;
+}
+
+.input-footer {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.typing-indicator {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #000;
+  animation: blink 1s infinite;
+}
+
+/* Fake error popup */
+.fake-error {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(45deg, #ff0000, #ff8000);
+  color: white;
+  padding: 30px;
+  border: 5px solid #ffff00;
+  border-radius: 20px;
+  z-index: 1000;
+  text-align: center;
+  box-shadow: 0 0 50px rgba(255, 0, 0, 0.8);
+  animation: wiggle 0.5s infinite;
+}
+
+.fake-error h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  animation: blink 0.5s infinite;
+}
+
+.fake-error p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.fake-error button {
+  padding: 10px 20px;
+  background: #00ff00;
+  color: #000;
+  border: 3px solid #ff00ff;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  animation: spinning 2s linear infinite;
+}
+
+/* Responsive design (badly implemented) */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+    font-size: 12px;
+  }
+  
+  .message-input {
+    font-size: 14px;
+  }
+  
+  .header-icon {
+    display: none; /* Hide icons on mobile for extra confusion */
+  }
+}
+
+/* Extra terrible CSS */
+::selection {
+  background: #ff00ff;
+  color: #00ff00;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, #ff00ff, #00ffff);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #ff0000, #00ff00);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #ffff00, #ff8000);
+}
